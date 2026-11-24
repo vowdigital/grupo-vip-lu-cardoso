@@ -41,10 +41,47 @@
 }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-block: 2rem 2.25rem;
+}
+
+.hero::before {
+  --hero-glow-color: #f3e7ce;
+
+  position: absolute;
+  z-index: -1;
+  inset: -2rem auto -2rem 50%;
+  width: min(100vw - 1rem, 116rem);
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle clamp(28rem, 72vw, 58rem) at 50% 50%,
+    color-mix(in srgb, var(--hero-glow-color) 33%, transparent) 0%,
+    color-mix(in srgb, var(--hero-glow-color) 27%, transparent) 25%,
+    color-mix(in srgb, var(--hero-glow-color) 18%, transparent) 49%,
+    color-mix(in srgb, var(--hero-glow-color) 9%, transparent) 70%,
+    color-mix(in srgb, var(--hero-glow-color) 3%, transparent) 86%,
+    color-mix(in srgb, var(--hero-glow-color) 0.6%, transparent) 95%,
+    transparent 100%
+  );
+  filter: blur(clamp(1rem, 2.5vw, 2.25rem));
+  mask-image: radial-gradient(
+    ellipse closest-side,
+    black 0%,
+    rgb(0 0 0 / 98%) 18%,
+    rgb(0 0 0 / 90%) 36%,
+    rgb(0 0 0 / 76%) 52%,
+    rgb(0 0 0 / 54%) 68%,
+    rgb(0 0 0 / 28%) 82%,
+    rgb(0 0 0 / 7%) 92%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  pointer-events: none;
+  content: "";
 }
 
 .hero__logo {
